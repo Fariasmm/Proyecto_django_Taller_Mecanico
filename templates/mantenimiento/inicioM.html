@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Inicio - Taller Mecánico{% endblock %}
+
+{% block content %}
+<div class="p-5 mb-4 bg-white rounded-3 shadow-sm border">
+    <div class="container-fluid py-3 text-center">
+        <h1 class="display-5 fw-bold text-primary">{{ titulo }}</h1>
+        <p class="col-md-8 mx-auto fs-5 text-muted">
+            Servicio integral de mantenimiento preventivo y correctivo para motocicletas y vehículos ligeros.
+        </p>
+        
+        <!-- Imagen local cargada desde static/img/ -->
+        <div class="my-4">
+            <img src="{% static 'img/taller.jpg' %}" alt="Taller Mecánico" class="img-fluid rounded shadow" style="max-height: 350px;">
+        </div>
+
+        <a class="btn btn-primary btn-lg" href="{% url 'mantenimiento_servicios' %}">Ver Pautas de Mantención</a>
+    </div>
+</div>
+{% endblock %}

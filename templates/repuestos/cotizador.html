@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Cotizador y Resumen{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">Resumen y Cotizador de Stock</h2>
+
+<div class="row mb-4">
+    <div class="col-md-6">
+        <div class="card shadow-sm border-0 bg-primary text-white">
+            <div class="card-body">
+                <h5>Precio Promedio en Catálogo</h5>
+                <h2 class="display-6 fw-bold">${{ precio_promedio }} CLP</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card shadow-sm border-0">
+    <div class="card-body">
+        <h5 class="card-title mb-3">Tabla Comparativa de Productos</h5>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Código</th>
+                        <th>Producto</th>
+                        <th>Categoría</th>
+                        <th>Precio</th>
+                        <th>Garantía</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in repuestos %}
+                    <tr>
+                        <td>#{{ item.id }}</td>
+                        <td class="fw-bold">{{ item.nombre }}</td>
+                        <td><span class="badge bg-secondary">{{ item.categoria }}</span></td>
+                        <td class="text-success fw-bold">${{ item.precio }}</td>
+                        <td>{{ item.garantia }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,47 @@
+[
+  {
+    "id": 101,
+    "nombre": "Kit Transmisión Cadena Reforzada 520",
+    "categoria": "Transmisión",
+    "precio": 38990,
+    "stock": 12,
+    "compatibilidad": "Motos 150cc - 250cc",
+    "garantia": "6 meses"
+  },
+  {
+    "id": 102,
+    "nombre": "Aceite Motor Sintético 10W-40 (1 Litro)",
+    "categoria": "Lubricantes",
+    "precio": 12500,
+    "stock": 25,
+    "compatibilidad": "Universal 4 Tiempos",
+    "garantia": "Sellado de fábrica"
+  },
+  {
+    "id": 103,
+    "nombre": "Juego de Pastillas de Freno Cerámicas",
+    "categoria": "Frenos",
+    "precio": 18900,
+    "stock": 8,
+    "compatibilidad": "Disco Delantero / Trasero",
+    "garantia": "3 meses"
+  },
+  {
+    "id": 104,
+    "nombre": "Filtro de Aire Deportivo",
+    "categoria": "Filtros",
+    "precio": 9500,
+    "stock": 15,
+    "compatibilidad": "Motos Deportivas y Naked",
+    "garantia": "6 meses"
+  },
+  {
+    "id": 105,
+    "nombre": "Bujía de Alto Rendimiento",
+    "categoria": "Encendido",
+    "precio": 4500,
+    "stock": 30,
+    "compatibilidad": "Motos 4 Tiempos",
+    "garantia": "3 meses"
+  }
+]

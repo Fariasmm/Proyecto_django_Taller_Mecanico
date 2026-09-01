@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Taller & Repuestos MotoTech{% endblock %}</title>
+    <!-- Bootstrap CSS Local -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+    <style>
+        :root {
+            --brand-primary: #0d6efd;
+            --brand-dark: #12161f;
+            --brand-surface: #1a2232;
+        }
+
+        /* Navbar principal */
+        .navbar-custom {
+            background-color: var(--brand-surface);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            letter-spacing: -0.02em;
+        }
+
+        .navbar-custom .nav-link {
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: #cfd7e3;
+            padding: 0.5rem 1rem !important;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .navbar-custom .nav-link:hover {
+            color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.08);
+        }
+    </style>
+</head>
+<body class="d-flex flex-column min-vh-100 bg-light">
+
+    <!-- Barra de Navegación Estilizada -->
+    <header class="sticky-top shadow-sm">
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+            <div class="container">
+                <a class="navbar-brand fw-bold fs-4 text-white d-flex align-items-center gap-2" href="{% url 'mantenimiento_inicio' %}">
+                    <span class="badge bg-primary px-2 py-1">M</span>
+                    <span>MotoTech<span class="text-primary">Pro</span></span>
+                </a>
+
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal" aria-controls="menuPrincipal" aria-expanded="false" aria-label="Navegación">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="menuPrincipal">
+                    <ul class="navbar-nav ms-auto gap-1 py-2 py-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'mantenimiento_inicio' %}">Inicio Taller</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'mantenimiento_servicios' %}">Servicios de Mantención</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'repuestos_catalogo' %}">Catálogo Repuestos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'repuestos_cotizador' %}">Cotizador</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contenido Dinámico -->
+    <main class="container my-4 flex-grow-1">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Footer Global Simple -->
+    <footer class="bg-dark text-white text-center py-3 mt-auto">
+        <div class="container">
+            <p class="mb-0 small">© 2026 MotoTech Pro - Arquitectura Web Modular en Django</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Local -->
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

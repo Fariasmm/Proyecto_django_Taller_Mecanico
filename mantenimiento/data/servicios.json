@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "servicio": "Cambio de Aceite y Filtro",
+    "descripcion": "Reemplazo de aceite sintético/mineral y filtro de motor para un rendimiento óptimo.",
+    "intervalo_km": "5.000 km",
+    "duracion_aprox": "45 min",
+    "nivel_prioridad": "Alta"
+  },
+  {
+    "id": 2,
+    "servicio": "Revisión y Ajuste de Frenos",
+    "descripcion": "Inspección de pastillas, balatas, líquido de freno y purga del sistema hidráulico.",
+    "intervalo_km": "10.000 km",
+    "duracion_aprox": "1 hora",
+    "nivel_prioridad": "Crítica"
+  },
+  {
+    "id": 3,
+    "servicio": "Alineación, Balanceo y Presión de Neumáticos",
+    "descripcion": "Calibración de presión en frío, chequeo de desgaste de banda y balanceo computarizado.",
+    "intervalo_km": "8.000 km",
+    "duracion_aprox": "40 min",
+    "nivel_prioridad": "Media"
+  },
+  {
+    "id": 4,
+    "servicio": "Revisión de Sistema de Suspensión",
+    "descripcion": "Inspección de amortiguadores, resortes y bujes para garantizar estabilidad y confort.",
+    "intervalo_km": "15.000 km",
+    "duracion_aprox": "1 hora 30 min",
+    "nivel_prioridad": "Media"
+  },
+  {
+    "id": 5,
+    "servicio": "Diagnóstico y Reparación de Sistema Eléctrico",
+    "descripcion": "Detección de fallas en batería, alternador, luces y cableado eléctrico.",
+    "intervalo_km": "Según necesidad",
+    "duracion_aprox": "Variable según diagnóstico",
+    "nivel_prioridad": "Alta"
+  }
+]
