@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Iniciar Sesión | MotoTechPro{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5 col-lg-4">
+        <div class="card shadow-sm border-0 rounded-3">
+            <div class="card-header bg-dark text-white text-center py-3">
+                <h5 class="mb-0 fw-bold">Acceso a MotoTechPro</h5>
+                <small class="text-secondary">Ingrese sus credenciales de usuario</small>
+            </div>
+            <div class="card-body p-4 bg-white">
+                {% if form.errors %}
+                    <div class="alert alert-danger p-2 small text-center" role="alert">
+                        Usuario o contraseña incorrectos.
+                    </div>
+                {% endif %}
+
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="id_username" class="form-label fw-semibold small">Usuario</label>
+                        <input type="text" name="username" autofocus required class="form-control" id="id_username" placeholder="Ingrese su usuario">
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_password" class="form-label fw-semibold small">Contraseña</label>
+                        <input type="password" name="password" required class="form-control" id="id_password" placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 fw-bold mt-2">Iniciar Sesión</button>
+                </form>
+            </div>
+            <div class="card-footer text-center py-2 bg-light border-0">
+                <small class="text-muted">Perfiles: Administrador | Operador | Consulta</small>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

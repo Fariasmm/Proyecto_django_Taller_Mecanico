@@ -1,3 +1,9 @@
 from django.contrib import admin
+from .models import Repuesto
 
-# Register your models here.
+@admin.register(Repuesto)
+class RepuestoAdmin(admin.ModelAdmin):
+    list_display = ('codigo', 'nombre', 'categoria', 'precio', 'stock', 'imagen')
+    search_fields = ('codigo', 'nombre', 'categoria')
+    list_filter = ('categoria',)
+    ordering = ('nombre',)

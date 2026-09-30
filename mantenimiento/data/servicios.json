@@ -1,42 +1,58 @@
 [
   {
-    "id": 1,
-    "servicio": "Cambio de Aceite y Filtro",
-    "descripcion": "Reemplazo de aceite sintético/mineral y filtro de motor para un rendimiento óptimo.",
-    "intervalo_km": "5.000 km",
-    "duracion_aprox": "45 min",
-    "nivel_prioridad": "Alta"
+    "codigo": "SRV-01",
+    "nombre": "Mantenimiento Preventivo Básico",
+    "descripcion": "Cambio de aceite de motor, cambio de filtro de aceite, lubricación y ajuste de holgura de cadena de transmisión, revisión de niveles de fluidos y chequeo de luces.",
+    "costo_mano_obra": 25000,
+    "tiempo_minutos": 60
   },
   {
-    "id": 2,
-    "servicio": "Revisión y Ajuste de Frenos",
-    "descripcion": "Inspección de pastillas, balatas, líquido de freno y purga del sistema hidráulico.",
-    "intervalo_km": "10.000 km",
-    "duracion_aprox": "1 hora",
-    "nivel_prioridad": "Crítica"
+    "codigo": "SRV-02",
+    "nombre": "Mantenimiento General Integral (Periódico)",
+    "descripcion": "Inspección completa: cambio de bujía, limpieza y calibración de cuerpo de aceleración, purga de circuito de frenos, torque general de pernos de chasis y regulación de ralentí.",
+    "costo_mano_obra": 55000,
+    "tiempo_minutos": 150
   },
   {
-    "id": 3,
-    "servicio": "Alineación, Balanceo y Presión de Neumáticos",
-    "descripcion": "Calibración de presión en frío, chequeo de desgaste de banda y balanceo computarizado.",
-    "intervalo_km": "8.000 km",
-    "duracion_aprox": "40 min",
-    "nivel_prioridad": "Media"
+    "codigo": "SRV-03",
+    "nombre": "Servicio de Frenos Delantero y Trasero",
+    "descripcion": "Reemplazo de pastillas/balatas, limpieza ultrasónica de pistones del cáliper, purgado con fluido DOT 4 nuevo y rectificado visual de discos.",
+    "costo_mano_obra": 22000,
+    "tiempo_minutos": 75
   },
   {
-    "id": 4,
-    "servicio": "Revisión de Sistema de Suspensión",
-    "descripcion": "Inspección de amortiguadores, resortes y bujes para garantizar estabilidad y confort.",
-    "intervalo_km": "15.000 km",
-    "duracion_aprox": "1 hora 30 min",
-    "nivel_prioridad": "Media"
+    "codigo": "SRV-04",
+    "nombre": "Cambio de Kit de Transmisión Completo",
+    "descripcion": "Desmontaje e instalación de piñón de ataque, corona y cadena de transmisión. Alineación de eje de rueda trasera y lubricación de rodamientos de masa.",
+    "costo_mano_obra": 28000,
+    "tiempo_minutos": 90
   },
   {
-    "id": 5,
-    "servicio": "Diagnóstico y Reparación de Sistema Eléctrico",
-    "descripcion": "Detección de fallas en batería, alternador, luces y cableado eléctrico.",
-    "intervalo_km": "Según necesidad",
-    "duracion_aprox": "Variable según diagnóstico",
-    "nivel_prioridad": "Alta"
+    "codigo": "SRV-05",
+    "nombre": "Regulación de Válvulas de Motor",
+    "descripcion": "Calibración micrométrica de holgura de punterías en frío según manual de fabricante con galgas de precisión. Cambio de junta/empaquetadura de culatín.",
+    "costo_mano_obra": 35000,
+    "tiempo_minutos": 120
+  },
+  {
+    "codigo": "SRV-06",
+    "nombre": "Mantenimiento de Horquilla y Suspensión Delantera",
+    "descripcion": "Desarmado de barras, cambio de retenes de aceite, guardapolvos y reemplazo de fluido hidráulico de suspensión por grado correspondiente.",
+    "costo_mano_obra": 48000,
+    "tiempo_minutos": 180
+  },
+  {
+    "codigo": "SRV-07",
+    "nombre": "Diagnóstico y Reparación de Sistema de Carga",
+    "descripcion": "Medición de caída de tensión en batería, prueba de estator bobinado, diagnóstico de regulador/rectificador e inspección de masa del chasis.",
+    "costo_mano_obra": 20000,
+    "tiempo_minutos": 45
+  },
+  {
+    "codigo": "SRV-08",
+    "nombre": "Cambio y Balanceo de Neumáticos",
+    "descripcion": "Desmontaje de llantas, recambio de neumáticos con válvulas de aire nuevas, talonado con sellador y verificación de balanceo dinámico.",
+    "costo_mano_obra": 18000,
+    "tiempo_minutos": 50
   }
 ]

@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% block title %}Órdenes de Trabajo | MotoTechPro{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="fw-bold mb-0">Gestión de Órdenes de Trabajo</h2>
+        <p class="text-muted small mb-0">Registro y control de servicios realizados en taller</p>
+    </div>
+    
+    <!-- Botón visible únicamente si el usuario tiene permiso para AGREGAR órdenes -->
+    {% if perms.mantenimiento.add_ordentrabajo %}
+        <a href="{% url 'orden_crear' %}" class="btn btn-primary fw-semibold">
+            + Nueva Orden de Trabajo
+        </a>
+    {% endif %}
+</div>
+
+<!-- Barra de Búsqueda ORM -->
+<div class="card shadow-sm border-0 mb-4">
+    <div class="card-body">
+        <form method="get" class="row g-2">
+            <div class="col-md-9">
+                <input type="text" name="q" value="{{ query }}" class="form-control" placeholder="Buscar por patente o nombre del cliente...">
+            </div>
+            <div class="col-md-3 d-flex gap-2">
+                <button type="submit" class="btn btn-primary w-100">Buscar</button>
+                {% if query %}
+                    <a href="{% url 'ordenes_listar' %}" class="btn btn-outline-secondary">Limpiar</a>
+                {% endif %}
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Tabla de Registros -->
+<div class="card shadow-sm border-0">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-dark">
+                    <tr>
+                        <th>N° Orden</th>
+                        <th>Patente</th>
+                        <th>Modelo</th>
+                        <th>Cliente</th>
+                        <th>Servicio</th>
+                        <th>Repuesto Utilizado</th>
+                        <th>Total</th>
+                        <th>Estado</th>
+                        <th>Fecha</th>
+                        {% if perms.mantenimiento.change_ordentrabajo or perms.mantenimiento.delete_ordentrabajo %}
+                            <th class="text-center">Acciones</th>
+                        {% endif %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for orden in ordenes %}
+                        <tr>
+                            <td class="fw-bold">#{{ orden.id }}</td>
+                            <td><span class="badge bg-secondary">{{ orden.patente_moto }}</span></td>
+                            <td>{{ orden.modelo_moto }}</td>
+                            <td>{{ orden.cliente_nombre }}</td>
+                            <td>{{ orden.servicio.nombre }}</td>
+                            <td>
+                                {% if orden.repuesto %}
+                                    {{ orden.repuesto.nombre }}
+                                {% else %}
+                                    <span class="text-muted small">Sin repuesto</span>
+                                {% endif %}
+                            </td>
+                            <td class="fw-semibold text-primary">${{ orden.total }}</td>
+                            <td>
+                                {% if orden.estado == 'Finalizado' or orden.estado == 'Entregado' %}
+                                    <span class="badge bg-success">{{ orden.estado }}</span>
+                                {% elif orden.estado == 'En Proceso' %}
+                                    <span class="badge bg-warning text-dark">{{ orden.estado }}</span>
+                                {% elif orden.estado == 'Cancelado' %}
+                                    <span class="badge bg-danger">{{ orden.estado }}</span>
+                                {% else %}
+                                    <span class="badge bg-secondary">{{ orden.estado }}</span>
+                                {% endif %}
+                            </td>
+                            <td class="small text-muted">{{ orden.fecha|date:"d/m/Y H:i" }}</td>
+                            
+                            <!-- Acciones condicionadas por los permisos nativos de Django -->
+                            {% if perms.mantenimiento.change_ordentrabajo or perms.mantenimiento.delete_ordentrabajo %}
+                                <td class="text-center">
+                                    <div class="d-flex justify-content-center gap-1">
+                                        {% if perms.mantenimiento.change_ordentrabajo %}
+                                            <a href="{% url 'orden_editar' orden.id %}" class="btn btn-sm btn-outline-warning" title="Cambiar estado o actualizar orden">
+                                                Editar
+                                            </a>
+                                        {% endif %}
+                                        {% if perms.mantenimiento.delete_ordentrabajo %}
+                                            <a href="{% url 'orden_eliminar' orden.id %}" class="btn btn-sm btn-outline-danger" title="Eliminar orden">
+                                                Eliminar
+                                            </a>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                            {% endif %}
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="10" class="text-center py-4 text-muted">
+                                No se encontraron órdenes de trabajo registradas.
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

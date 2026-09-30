@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Eliminar Orden de Trabajo{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-4">
+    <div class="col-md-6">
+        <div class="card border-danger shadow-sm">
+            <div class="card-header bg-danger text-white fw-bold">Confirmar Eliminación de Orden</div>
+            <div class="card-body text-center p-4">
+                <h5>¿Seguro que deseas eliminar esta Orden de Trabajo?</h5>
+                <p class="text-danger fw-bold fs-5 my-3">Orden #{{ orden.id }} - Patente: {{ orden.patente_moto }}</p>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="d-flex justify-content-center gap-2 mt-4">
+                        <a href="{% url 'ordenes_listar' %}" class="btn btn-secondary">Cancelar</a>
+                        <button type="submit" class="btn btn-danger">Sí, Eliminar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

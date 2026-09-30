@@ -15,7 +15,6 @@
             --brand-surface: #1a2232;
         }
 
-        /* Navbar principal */
         .navbar-custom {
             background-color: var(--brand-surface);
             transition: all 0.3s ease;
@@ -29,7 +28,7 @@
             font-weight: 500;
             font-size: 0.95rem;
             color: #cfd7e3;
-            padding: 0.5rem 1rem !important;
+            padding: 0.5rem 0.8rem !important;
             border-radius: 6px;
             transition: all 0.2s ease;
         }
@@ -38,11 +37,16 @@
             color: #ffffff;
             background-color: rgba(255, 255, 255, 0.08);
         }
+        
+        .role-badge {
+            font-size: 0.75rem;
+            letter-spacing: 0.03em;
+        }
     </style>
 </head>
 <body class="d-flex flex-column min-vh-100 bg-light">
 
-    <!-- Barra de Navegación Estilizada -->
+    <!-- Barra de Navegación Estilizada y Dinámica -->
     <header class="sticky-top shadow-sm">
         <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
             <div class="container">
@@ -56,12 +60,12 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="menuPrincipal">
-                    <ul class="navbar-nav ms-auto gap-1 py-2 py-lg-0">
+                    <ul class="navbar-nav me-auto gap-1 py-2 py-lg-0">
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'mantenimiento_inicio' %}">Inicio Taller</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'mantenimiento_servicios' %}">Servicios de Mantención</a>
+                            <a class="nav-link" href="{% url 'mantenimiento_servicios' %}">Servicios</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'repuestos_catalogo' %}">Catálogo Repuestos</a>
@@ -69,11 +73,53 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'repuestos_cotizador' %}">Cotizador</a>
                         </li>
+                        
+                        <!-- Acceso a Transacciones (Visible para todos los autenticados) -->
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link text-warning fw-semibold" href="{% url 'ordenes_listar' %}">Órdenes de Trabajo</a>
+                            </li>
+                        {% endif %}
                     </ul>
+
+                    <!-- Menú de Usuario / Autenticación Dinámica por Perfil -->
+                    <div class="d-flex align-items-center gap-2 py-2 py-lg-0">
+                        {% if user.is_authenticated %}
+                            <div class="text-light me-2 text-end d-none d-md-block">
+                                <span class="d-block small fw-bold">{{ user.username }}</span>
+                                {% if user.is_superuser or user.groups.all.0.name == 'Administrador' %}
+                                    <span class="badge bg-danger role-badge">Administrador</span>
+                                {% elif user.groups.all.0.name == 'Operador' %}
+                                    <span class="badge bg-primary role-badge">Operador</span>
+                                {% else %}
+                                    <span class="badge bg-secondary role-badge">Consulta</span>
+                                {% endif %}
+                            </div>
+
+                            <form action="{% url 'logout' %}" method="post" class="d-inline">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-light btn-sm">Cerrar Sesión</button>
+                            </form>
+                        {% else %}
+                            <a href="{% url 'login' %}" class="btn btn-primary btn-sm px-3">Iniciar Sesión</a>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </nav>
     </header>
+
+    <!-- Mensajes del Sistema (Éxito, Error, Alertas) -->
+    <div class="container mt-3">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags|default:'info' }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
 
     <!-- Contenido Dinámico -->
     <main class="container my-4 flex-grow-1">
@@ -81,7 +127,7 @@
         {% endblock %}
     </main>
 
-    <!-- Footer Global Simple -->
+    <!-- Footer Global -->
     <footer class="bg-dark text-white text-center py-3 mt-auto">
         <div class="container">
             <p class="mb-0 small">© 2026 MotoTech Pro - Arquitectura Web Modular en Django</p>

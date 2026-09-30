@@ -1,43 +1,80 @@
 {% extends 'base.html' %}
 
-{% block title %}Servicios - Pautas Técnicas{% endblock %}
+{% block title %}Servicios - Pautas Técnicas | MotoTechPro{% endblock %}
 
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2>Pautas de Mantenimiento</h2>
-    <span class="badge bg-primary fs-6">{{ total_servicios }} pautas registradas</span>
+    <div>
+        <h2 class="fw-bold mb-0">Pautas de Mantenimiento</h2>
+        <span class="badge bg-primary fs-6">{{ total_servicios }} pautas registradas</span>
+    </div>
+    <!-- Botón Agregar: Visible ÚNICAMENTE si tiene el permiso explícito 'Can add Servicio de Mantenimiento' -->
+    {% if perms.mantenimiento.add_serviciomantenimiento %}
+        <a href="{% url 'servicio_crear' %}" class="btn btn-success fw-semibold">
+            + Nuevo Servicio
+        </a>
+    {% endif %}
 </div>
 
+<!-- Buscador ORM -->
 <form method="GET" class="mb-4">
-    <div class="input-group">
-        <input type="text" class="form-control" placeholder="Buscar repuestos..." name="q" value="{{ request.GET.q }}">
-        <button class="btn btn-outline-secondary" type="submit">Buscar</button>
-        {% if busqueda_actual %}
-        <a href="{% url 'repuestos_catalogo' %}" class="btn btn-outline-danger">Limpiar</a>
+    <div class="input-group shadow-sm">
+        <input type="text" class="form-control" placeholder="Buscar servicio por nombre o descripción..." name="q" value="{{ busqueda }}">
+        <button class="btn btn-primary" type="submit">Buscar</button>
+        {% if busqueda %}
+            <a href="{% url 'mantenimiento_servicios' %}" class="btn btn-outline-danger">Limpiar</a>
         {% endif %}
     </div>
 </form>
-
 
 <div class="row">
     {% for servicio in servicios %}
     <div class="col-md-4 mb-4">
         <div class="card h-100 shadow-sm border-0">
+            <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                <span class="badge bg-secondary">{{ servicio.codigo }}</span>
+                <span class="fw-bold text-success">${{ servicio.costo_mano_obra }}</span>
+            </div>
             <div class="card-body d-flex flex-column">
-                <h5 class="card-title text-primary">{{ servicio.servicio }}</h5>
+                <h5 class="card-title text-primary fw-bold">{{ servicio.nombre }}</h5>
                 <p class="card-text text-muted flex-grow-1">{{ servicio.descripcion }}</p>
+                
                 <ul class="list-group list-group-flush mb-3">
-                    <li class="list-group-item px-0"><strong>Intervalo:</strong> {{ servicio.intervalo_km }}</li>
-                    <li class="list-group-item px-0"><strong>Duración:</strong> {{ servicio.duracion_aprox }}</li>
+                    <li class="list-group-item px-0 d-flex justify-content-between">
+                        <strong>Tiempo estimado:</strong> 
+                        <span>{{ servicio.tiempo_minutos }} min</span>
+                    </li>
+                    <li class="list-group-item px-0 d-flex justify-content-between align-items-center">
+                        <strong>Ficha Técnica (PDF):</strong>
+                        {% if servicio.pauta_tecnica %}
+                            <a href="{{ servicio.pauta_tecnica.url }}" target="_blank" class="btn btn-sm btn-outline-danger">
+                                Ver PDF
+                            </a>
+                        {% else %}
+                            <span class="text-muted small">Sin adjunto</span>
+                        {% endif %}
+                    </li>
                 </ul>
-                <div>
-                    <span class="badge {% if servicio.nivel_prioridad == 'Crítica' %}bg-danger{% else %}bg-warning text-dark{% endif %}">
-                        Prioridad {{ servicio.nivel_prioridad }}
-                    </span>
-                </div>
+
+                <!-- Acciones CRUD condicionadas estrictamente por los permisos nativos del usuario -->
+                {% if perms.mantenimiento.change_serviciomantenimiento or perms.mantenimiento.delete_serviciomantenimiento %}
+                    <div class="d-flex gap-2 pt-2 border-top">
+                        {% if perms.mantenimiento.change_serviciomantenimiento %}
+                            <a href="{% url 'servicio_editar' servicio.id %}" class="btn btn-sm btn-outline-warning w-100">Editar</a>
+                        {% endif %}
+                        {% if perms.mantenimiento.delete_serviciomantenimiento %}
+                            <a href="{% url 'servicio_eliminar' servicio.id %}" class="btn btn-sm btn-outline-danger w-100">Eliminar</a>
+                        {% endif %}
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>
+    {% empty %}
+        <div class="col-12 text-center py-5">
+            <h4 class="text-muted">No se encontraron servicios de mantenimiento registrados.</h4>
+            <p class="text-secondary">Usa el panel de administración o un usuario con permisos para agregar servicios.</p>
+        </div>
     {% endfor %}
 </div>
 {% endblock %}

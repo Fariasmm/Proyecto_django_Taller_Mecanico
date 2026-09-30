@@ -1,47 +1,98 @@
 [
   {
-    "id": 101,
-    "nombre": "Kit Transmisión Cadena Reforzada 520",
-    "categoria": "Transmisión",
-    "precio": 38990,
-    "stock": 12,
-    "compatibilidad": "Motos 150cc - 250cc",
-    "garantia": "6 meses"
-  },
-  {
-    "id": 102,
-    "nombre": "Aceite Motor Sintético 10W-40 (1 Litro)",
-    "categoria": "Lubricantes",
-    "precio": 12500,
-    "stock": 25,
-    "compatibilidad": "Universal 4 Tiempos",
-    "garantia": "Sellado de fábrica"
-  },
-  {
-    "id": 103,
-    "nombre": "Juego de Pastillas de Freno Cerámicas",
+    "codigo": "REP-001",
+    "nombre": "Pastillas de Freno Delanteras Cerámicas",
     "categoria": "Frenos",
-    "precio": 18900,
-    "stock": 8,
-    "compatibilidad": "Disco Delantero / Trasero",
-    "garantia": "3 meses"
+    "precio": 18990,
+    "stock": 25,
+    "descripcion": "Pastillas de compuesto cerámico de alta disipación térmica para cáliper delantero."
   },
   {
-    "id": 104,
-    "nombre": "Filtro de Aire Deportivo",
+    "codigo": "REP-002",
+    "nombre": "Aceite Sintético 10W-40 4T (1L)",
+    "categoria": "Lubricantes",
+    "precio": 14500,
+    "stock": 40,
+    "descripcion": "Aceite de motor 100% sintético con certificación JASO MA2 / API SN."
+  },
+  {
+    "codigo": "REP-003",
+    "nombre": "Filtro de Aceite Blindado",
     "categoria": "Filtros",
-    "precio": 9500,
-    "stock": 15,
-    "compatibilidad": "Motos Deportivas y Naked",
-    "garantia": "6 meses"
+    "precio": 6990,
+    "stock": 30,
+    "descripcion": "Elemento filtrante de microfibra de alta retención para motores monocilíndricos."
   },
   {
-    "id": 105,
-    "nombre": "Bujía de Alto Rendimiento",
+    "codigo": "REP-004",
+    "nombre": "Bujía de Iridio CR8EIX",
     "categoria": "Encendido",
-    "precio": 4500,
-    "stock": 30,
-    "compatibilidad": "Motos 4 Tiempos",
-    "garantia": "3 meses"
+    "precio": 12900,
+    "stock": 20,
+    "descripcion": "Bujía con electrodo central de iridio para encendido eficiente y menor consumo."
+  },
+  {
+    "codigo": "REP-005",
+    "nombre": "Cadena de Transmisión Reforzada con O-Ring 428HO",
+    "categoria": "Transmisión",
+    "precio": 32990,
+    "stock": 12,
+    "descripcion": "Cadena paso 428 de 132 eslabones con retenes autolubricados para mayor vida útil."
+  },
+  {
+    "codigo": "REP-006",
+    "nombre": "Piñón de Ataque 14 Dientes",
+    "categoria": "Transmisión",
+    "precio": 8500,
+    "stock": 15,
+    "descripcion": "Piñón de acero templado al carbono mecanizado en CNC."
+  },
+  {
+    "codigo": "REP-007",
+    "nombre": "Corona Trasera 41 Dientes",
+    "categoria": "Transmisión",
+    "precio": 16900,
+    "stock": 10,
+    "descripcion": "Catalina trasera de acero tratado térmicamente para paso 428."
+  },
+  {
+    "codigo": "REP-008",
+    "nombre": "Filtro de Aire de Alto Flujo",
+    "categoria": "Filtros",
+    "precio": 11500,
+    "stock": 18,
+    "descripcion": "Elemento lavable con marco rígido de poliuretano y malla protectora."
+  },
+  {
+    "codigo": "REP-009",
+    "nombre": "Líquido de Frenos DOT 4 (500 ml)",
+    "categoria": "Frenos",
+    "precio": 7990,
+    "stock": 22,
+    "descripcion": "Fluido hidráulico sintético con punto de ebullición en seco superior a 260°C."
+  },
+  {
+    "codigo": "REP-010",
+    "nombre": "Batería de Gel 12V 7Ah Sellada",
+    "categoria": "Eléctrico",
+    "precio": 38900,
+    "stock": 8,
+    "descripcion": "Batería libre de mantenimiento con tecnología AGM-Gel de alto ciclado."
+  },
+  {
+    "codigo": "REP-011",
+    "nombre": "Neumático Delantero 100/80-17 TL",
+    "categoria": "Neumáticos",
+    "precio": 45990,
+    "stock": 6,
+    "descripcion": "Compuesto deportivo para asfalto seco y mojado sin cámara."
+  },
+  {
+    "codigo": "REP-012",
+    "nombre": "Neumático Trasero 140/60-17 TL",
+    "categoria": "Neumáticos",
+    "precio": 62990,
+    "stock": 6,
+    "descripcion": "Neumático radial deportivo con surcos profundos de evacuación hídrica."
   }
 ]
