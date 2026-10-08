@@ -1,4 +1,5 @@
 from rest_framework import viewsets, permissions
+from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 from .models import Repuesto
 from .serializers import RepuestoSerializer
 
@@ -10,3 +11,4 @@ class RepuestoViewSet(viewsets.ModelViewSet):
     queryset = Repuesto.objects.all()
     serializer_class = RepuestoSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    parser_classes = [MultiPartParser, FormParser, JSONParser]
