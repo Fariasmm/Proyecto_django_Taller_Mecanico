@@ -1,6 +1,33 @@
 import os
 from pathlib import Path
 from dotenv import load_dotenv
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),       # Token de acceso vigente por 60 min
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),          # Token de renovación vigente por 1 día
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': False,
+    'AUTH_HEADER_TYPES': ('Bearer',),                     # Formato en cabecera: Bearer <TOKEN>
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'MotoTechPro API RESTful',
+    'DESCRIPTION': 'Documentación y endpoints corporativos con autenticación JWT y control de acceso RBAC.',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    # Habilitar autenticación Bearer JWT en la interfaz web de Swagger
+    'SECURITY': [{'BearerAuth': []}],
+    'APPEND_COMPONENTS': {
+        'securitySchemes': {
+            'BearerAuth': {
+                'type': 'http',
+                'scheme': 'bearer',
+                'bearerFormat': 'JWT',
+            }
+        }
+    },
+}
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -32,6 +59,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mantenimiento',
     'repuestos',
+    'rest_framework',
+    'rest_framework_simplejwt',
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -141,4 +171,18 @@ MAILERS = {
     'default': {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
+}
+
+REST_FRAMEWORK = {
+    # Autenticación global por JWT y soporte de sesión para navegación
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    # Permiso por defecto: Lectura libre, pero creación/edición requiere login
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    ),
+    # Motor para generar la documentación Swagger/OpenAPI 3.0
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
